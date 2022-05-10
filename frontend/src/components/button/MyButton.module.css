@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container_button {
+    align-items: center;
+
+}
+
+.container_button button {
+    padding: 0;
+    border: none;
+    font-size: medium;
+    background-color: #191970;
+    color: white;
+    cursor: pointer;
+    transition: 2s;
+}
+
+.container_button button:hover{
+    border-radius: 1em;
+}
+
+.container_button svg {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}

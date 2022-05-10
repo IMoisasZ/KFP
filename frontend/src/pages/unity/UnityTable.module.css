@@ -1,0 +1,54 @@
+.container_table {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.container_table h1 {
+    margin: 1em 0;
+}
+
+.container_table .table {
+    min-height: 50%;
+    max-height: 50%;
+}
+
+.container_table table {
+    width: 100%;
+}
+
+.container_table table tr th {
+    width: 12em;
+}
+
+.container_table table td {
+    text-align: center;
+}
+
+.container_table table tbody tr {
+    cursor: pointer;
+    transition: 2s;
+}
+
+.container_table table tbody tr:hover{
+    font-weight: 700;
+    background-color: rgb(99, 99, 217);
+}
+
+.container_table table th{
+    width: 5em;
+}
+
+.container_table .table {
+    border: 1px solid black;
+    border-radius: 0.5em;
+    padding: 1em;
+    overflow-y: scroll;
+}
+
+.container_table a {
+    margin-top: 1em;
+}

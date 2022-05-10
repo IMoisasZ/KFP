@@ -1,0 +1,22 @@
+.container_unidade {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.container_unidade form{
+    border: 1px solid black;
+    padding: 2em;
+    border-radius: 1em;
+}
+
+.container_unidade .div_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+

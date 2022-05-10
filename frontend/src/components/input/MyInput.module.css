@@ -1,0 +1,29 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.container_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container_input label {
+    margin-bottom: 0.5em;
+}
+
+.container_input input {
+    height: 2em;
+    width: 20em;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.container_input input::placeholder{
+    text-transform: lowercase
+}
+
+.container_input input::first-letter{
+    text-transform: uppercase
+}

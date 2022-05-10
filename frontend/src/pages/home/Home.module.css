@@ -1,0 +1,29 @@
+.container_home {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 20%;
+    margin: 0 auto;
+    padding: 2em;
+}
+
+.container_home p {
+    text-align: center;
+}
+
+.container_home button {
+    padding: 0;
+    height: 3em;
+    width: 6em;
+    border: none;
+    font-size: medium;
+    background-color: #191970;
+    color: white;
+    cursor: pointer;
+    transition: 1s;
+}
+
+.container_home button:hover{
+    border-radius: 1em;
+}

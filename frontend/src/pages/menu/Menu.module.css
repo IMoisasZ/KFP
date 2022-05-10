@@ -1,0 +1,51 @@
+.container_menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 70%;
+}
+
+.container_menu h1 {
+    margin: 1em 0;
+}
+
+.container_menu .itens_menu{
+    display: flex;
+}
+
+.container_menu .itens_menu p {
+    padding: 0.5em 1em;
+    cursor: pointer;
+    transition: 2s;
+}
+
+.container_menu .itens_menu p:hover {
+    text-decoration: underline;
+    background-color: #191970;
+    color: white;
+    border-radius: 0.5em;
+}
+
+.container_menu .controle_estoque_itens p,
+.container_menu .controle_estoque_cadastro p {
+    margin-top: 1em;
+    cursor: pointer;
+    padding: 0.8em 1em;
+    text-align: center;
+    transition: 2s;
+}
+
+.container_menu .controle_estoque_cadastro a {
+    text-decoration: none;
+    color: black;
+}
+
+.container_menu .controle_estoque_itens p:hover,
+.container_menu .controle_estoque_cadastro p:hover {
+    text-decoration: underline;
+    background-color: #191970;
+    color: white;
+    border-radius: 0.5em;
+}
