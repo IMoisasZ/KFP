@@ -1,7 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 import winston from 'winston'
-import UnityRoute from './src/route/route.unity.js'
+import UnityRoute from './src/route/unity.route.js'
+import ProductRoute from './src/route/product.route.js'
 
 const app = express()
 
@@ -10,6 +11,7 @@ app.use(cors())
 
 // routes
 app.use('/unity', UnityRoute)
+app.use('/product', ProductRoute)
 
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format
