@@ -82,6 +82,18 @@ async function disableEnableProduct(product) {
 	}
 }
 
+async function getProductByUnity(unity_id) {
+	try {
+		return ProductModel.findOne({
+			where: {
+				unity_id,
+			},
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 export default {
 	createProduct,
 	updateProduct,
@@ -89,4 +101,5 @@ export default {
 	getProduct,
 	deleteProduct,
 	disableEnableProduct,
+	getProductByUnity,
 }

@@ -1,0 +1,18 @@
+.container_select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1em;
+}
+
+.container_select label  {
+    margin-bottom: 0.5em;
+}
+
+.container_select select {
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+ 

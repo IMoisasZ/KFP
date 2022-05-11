@@ -1,4 +1,5 @@
 import UnityRepository from '../repository/unity.repository.js'
+import ProductRepository from '../repository/product.repository.js'
 
 async function createUnity(unity) {
 	try {
@@ -36,7 +37,19 @@ async function getUnity(unity_id) {
 }
 
 async function deleteUnity(unity_id) {
-	return await UnityRepository.deleteUnity(unity_id)
+	try {
+		const product = await ProductRepository.getProductByUnity(unity_id)
+
+		if (product) {
+			throw new Error(
+				'Não é possivel deletar uma unidade alocada a um produto!',
+			)
+		}
+
+		return await UnityRepository.deleteUnity(unity_id)
+	} catch (error) {
+		throw error
+	}
 }
 
 async function disableEnableUnity(unity) {

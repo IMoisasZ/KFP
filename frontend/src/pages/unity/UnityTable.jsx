@@ -49,7 +49,7 @@ function UnityTable({ screen, unityEdit, btn }) {
 		} catch (error) {
 			console.log({ error })
 			setTypeMessage('error')
-			setMessage(error.response.data.error)
+			setMessage(error.response.data.error || error.response.data.erros)
 			timeMessage(setMessage, setTypeMessage)
 		}
 	}

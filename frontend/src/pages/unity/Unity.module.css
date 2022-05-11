@@ -7,6 +7,10 @@
     margin: 0 auto;
 }
 
+.container_unidade h2 {
+    font-size: xx-large;
+}
+
 .container_unidade form{
     border: 1px solid black;
     padding: 2em;

@@ -107,7 +107,7 @@ function Unity() {
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />
 					</Link>
-					<h1>Unidade</h1>
+					<h2>Unidade</h2>
 					<Form handleOnSubmit={handleSubmit}>
 						<Input
 							name='tag'

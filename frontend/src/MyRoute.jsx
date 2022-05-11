@@ -6,8 +6,7 @@ import Home from './pages/home/Home'
 import Login from './pages/login/Login'
 import Menu from './pages/menu/Menu'
 import Unity from './pages/unity/Unity'
-import Error from './pages/error/Error'
-import UnityTable from './pages/unity/UnityTable'
+import Product from './pages/product/Product'
 
 function MyRoute({ children }) {
 	return (
@@ -20,8 +19,7 @@ function MyRoute({ children }) {
 					<Route path='/login' element={<Login />} />
 					<Route path='/menu' element={<Menu />} />
 					<Route path='/unity' element={<Unity />} />
-					<Route path='/unity/list_unity' element={<UnityTable />} />
-					<Route path='/error' element={<Error />} />
+					<Route path='/product' element={<Product />} />
 				</Routes>
 				<Footer />
 			</Router>

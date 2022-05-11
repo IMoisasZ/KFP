@@ -1,0 +1,52 @@
+.container_product {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.container_product h2 {
+    margin: 1em 0;
+}
+
+.container_product form {
+    border-radius: 1em;
+    border: 1px solid black;
+    padding: 1em 2em;
+    width: 42%;
+    margin-bottom: 1em;
+}
+
+.container_product button {
+    margin-top: 1em;
+}
+
+.container_product .line_one {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container_product .line_one input {
+    margin: 0em 0.5em;
+}
+
+.container_product .line_two {
+    display: flex;
+    justify-content: center;
+}
+
+.container_product .line_two input,
+.container_product .line_two select {
+    margin: 0em 0.5em;
+}
+
+
+.container_product .div_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
