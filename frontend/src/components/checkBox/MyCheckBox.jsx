@@ -12,11 +12,12 @@ function MyCheckBox({
 	margin = '0 0 1em 0',
 	checked = true,
 	padding,
+	divWidth,
 }) {
 	return (
 		<div
 			className={style.container_checkBox}
-			style={{ flexDirection, margin, padding }}>
+			style={{ flexDirection, margin, padding, width: divWidth }}>
 			<label htmlFor={name} id={name} style={{ margin }}>
 				{nameLabel}
 			</label>

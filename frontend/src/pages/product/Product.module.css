@@ -8,14 +8,14 @@
 }
 
 .container_product h2 {
-    margin: 1em 0;
+    font-size: xx-large;
 }
 
 .container_product form {
     border-radius: 1em;
     border: 1px solid black;
-    padding: 1em 2em;
-    width: 42%;
+    padding: 1em;
+    width: 50%;
     margin-bottom: 1em;
 }
 
@@ -23,26 +23,21 @@
     margin-top: 1em;
 }
 
-.container_product .line_one {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-
-.container_product .line_one input {
-    margin: 0em 0.5em;
-}
-
+.container_product .line_one,
 .container_product .line_two {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
+
+.container_product .line_one input,
 .container_product .line_two input,
 .container_product .line_two select {
+    width: 100%;
     margin: 0em 0.5em;
 }
-
 
 .container_product .div_buttons {
     display: flex;

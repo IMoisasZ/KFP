@@ -8,11 +8,12 @@ function MySelect({
 	children,
 	defaultValue = 'Escolha um item da lista',
 	labelSelect = 'Nome do select',
-	width = '20em',
+	width,
 	height = '2.5em',
+	divWidth,
 }) {
 	return (
-		<div className={style.container_select}>
+		<div className={style.container_select} style={{ width: divWidth }}>
 			<label htmlFor={name}>{labelSelect}</label>
 			<select
 				style={{ width, height }}

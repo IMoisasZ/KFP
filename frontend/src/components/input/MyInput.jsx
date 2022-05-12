@@ -14,9 +14,12 @@ function MyInput({
 	width,
 	margin = '0 0 1em 0',
 	height,
+	divWidth,
 }) {
 	return (
-		<div className={style.container_input} style={{ flexDirection, margin }}>
+		<div
+			className={style.container_input}
+			style={{ flexDirection, margin, width: divWidth }}>
 			<label htmlFor={name} id={name}>
 				{nameLabel}
 			</label>

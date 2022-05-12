@@ -102,7 +102,7 @@ function Unity() {
 
 	if (screen === 'create') {
 		return (
-			<Container height='75vh' backgroundColor='main' btnHome={true}>
+			<Container minHeight='75vh' backgroundColor='main' btnHome={true}>
 				<div className={style.container_unidade}>
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />
@@ -189,7 +189,10 @@ function Unity() {
 						)}
 					</Form>
 					{message && (
-						<Message typeMesssage={typeMessage} width='49%'>
+						<Message
+							typeMesssage={typeMessage}
+							width='49%'
+							margin='1em 0 1em 0'>
 							{message}
 						</Message>
 					)}
