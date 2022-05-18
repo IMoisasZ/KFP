@@ -57,7 +57,7 @@ function Menu() {
 					<Link to='/product'>
 						<p>Produtos</p>
 					</Link>
-					<Link to='/customers_suppliers'>
+					<Link to='/client_supplier'>
 						<p>Clientes/Fornecedores</p>
 					</Link>
 					<Link to='/tools'>

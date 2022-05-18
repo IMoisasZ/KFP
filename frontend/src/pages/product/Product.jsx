@@ -45,7 +45,7 @@ function Product() {
 	}, [])
 
 	const allUnits = async () => {
-		const result = await api.get('/unity')
+		const result = await api.get(`/unity?unity_status=${true}`)
 		setListUnity(result.data)
 	}
 

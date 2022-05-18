@@ -132,6 +132,7 @@ function Unity() {
 							value={actived}
 							checked={actived && true}
 							togleOnChange={togleActived}
+							margin='0 1em'
 						/>
 						{typeBtn === 'add' ? (
 							<div className={style.div_buttons}>
