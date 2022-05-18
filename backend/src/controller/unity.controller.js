@@ -41,9 +41,13 @@ async function updateUnity(req, res, next) {
 
 async function getUnits(req, res, next) {
 	try {
+		const unity_status = req.query.unity_status === 'true'
+		if (unity_status) {
+			logger.info(`GET - /unity/-ALL UNITS WITH STATUS = ${unity_status}`)
+			return res.send(await UnityService.getUnits(unity_status))
+		}
 		res.send(await UnityService.getUnits())
-
-		logger.info(`GET - /unity - ALL UNITS`)
+		logger.info(`GET - /unity/-ALL UNITS`)
 	} catch (error) {
 		next(error)
 	}

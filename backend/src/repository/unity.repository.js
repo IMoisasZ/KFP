@@ -29,6 +29,21 @@ async function getUnits() {
 	}
 }
 
+async function getUnitsActived(unity_status) {
+	console.debug('repo', unity_status)
+	try {
+		const units = await UnityModel.findAll({
+			where: {
+				unity_actived: unity_status,
+			},
+		})
+		console.log(units)
+		return units
+	} catch (error) {
+		throw error
+	}
+}
+
 async function getUnity(unity_id) {
 	try {
 		return await UnityModel.findByPk(unity_id)
@@ -83,6 +98,7 @@ export default {
 	createUnity,
 	updateUnity,
 	getUnits,
+	getUnitsActived,
 	getUnity,
 	deleteUnity,
 	disableEnableUnity,

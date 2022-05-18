@@ -28,7 +28,10 @@ async function updateUnity(unity) {
 	}
 }
 
-async function getUnits() {
+async function getUnits(unity_status) {
+	if (unity_status) {
+		return await UnityRepository.getUnitsActived(unity_status)
+	}
 	return await UnityRepository.getUnits()
 }
 
