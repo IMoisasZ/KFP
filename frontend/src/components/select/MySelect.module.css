@@ -8,11 +8,13 @@
 
 .container_select label  {
     margin-bottom: 0.5em;
+    text-align: center;
 }
 
 .container_select select {
     margin-bottom: 1em;
     text-align: center;
+    width: 100%;
 }
 
  

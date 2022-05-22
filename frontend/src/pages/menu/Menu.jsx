@@ -60,10 +60,10 @@ function Menu() {
 					<Link to='/client_supplier'>
 						<p>Clientes/Fornecedores</p>
 					</Link>
-					<Link to='/tools'>
+					<Link to='/tool'>
 						<p>Ferramentas</p>
 					</Link>
-					<Link to='/techition'>
+					<Link to='/technician'>
 						<p>Técnicos</p>
 					</Link>
 					<Link to='/list_tools'>

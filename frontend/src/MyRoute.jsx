@@ -8,6 +8,8 @@ import Menu from './pages/menu/Menu'
 import Unity from './pages/unity/Unity'
 import Product from './pages/product/Product'
 import ClientSupplier from './pages/clientSupplier/ClientSupplier'
+import Tool from './pages/tool/Tool'
+import Technician from './pages/technician/Technician'
 
 function MyRoute({ children }) {
 	return (
@@ -22,6 +24,8 @@ function MyRoute({ children }) {
 					<Route path='/unity' element={<Unity />} />
 					<Route path='/product' element={<Product />} />
 					<Route path='/client_supplier' element={<ClientSupplier />} />
+					<Route path='/tool' element={<Tool />} />
+					<Route path='/technician' element={<Technician />} />
 				</Routes>
 				<Footer />
 			</Router>

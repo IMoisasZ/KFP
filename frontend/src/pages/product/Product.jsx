@@ -191,9 +191,8 @@ function Product() {
 								checked={actived && true}
 								nameLabel='Ativo'
 								togleOnChange={togleActived}
-								flexDirection='column'
-								margin='0 2% 1% 0%'
-								divWidth='5%'
+								flexDirection='row'
+								divWidth='10%'
 							/>
 						</div>
 						{typeBtn === 'add' ? (

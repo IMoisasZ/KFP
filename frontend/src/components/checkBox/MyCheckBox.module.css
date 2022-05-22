@@ -10,7 +10,8 @@
 }
 
 .container_checkBox label {
-    margin-right: 1em;
+    text-align: center;
+    margin: 0em;
 }
 
 .container_checkBox input {

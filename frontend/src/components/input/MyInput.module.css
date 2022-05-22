@@ -11,11 +11,12 @@
 
 .container_input label {
     margin-bottom: 0.5em;
+    text-align: center;
 }
 
 .container_input input {
     height: 2em;
-    width: 20em;
+    width: 100%;
     text-align: center;
     text-transform: uppercase;
 }

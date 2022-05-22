@@ -1,7 +1,6 @@
 import React from 'react'
 
 function MyTable({ children, caption, headTable }) {
-	console.log(headTable)
 	return (
 		<table>
 			<caption>{caption}</caption>

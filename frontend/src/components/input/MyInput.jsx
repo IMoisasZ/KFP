@@ -10,8 +10,8 @@ function MyInput({
 	hide = false,
 	disable,
 	handleOnChange = null,
+	hadleOnAfterChange = null,
 	flexDirection = 'column',
-	width,
 	margin = '0 0 1em 0',
 	height,
 	divWidth,
@@ -24,13 +24,14 @@ function MyInput({
 				{nameLabel}
 			</label>
 			<input
-				style={{ width, height }}
+				style={{ height }}
 				type={type}
 				value={value}
 				placeholder={placeholder}
 				hidden={hide}
 				disable={disable}
 				onChange={handleOnChange}
+				onBlur={hadleOnAfterChange}
 			/>
 		</div>
 	)

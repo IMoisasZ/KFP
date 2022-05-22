@@ -23,18 +23,14 @@ function ClientSupplier() {
 	const [typeBtn, setTypeBtn] = useState('add')
 	const [screen, setScreen] = useState('create')
 	const [editClientSupplier, setEditClientSupplier] = useState('')
-
-	// edit unity
+	const [disableSelect, setDisableSelect] = useState(false)
+	// edit client/supplier
 	useEffect(() => {
-		setId(editClientSupplier.client_supplier_id)
-		setType(editClientSupplier.type)
+		// setType(editClientSupplier.type)
+		setId(editClientSupplier.client_id || editClientSupplier.supplier_id)
 		setName(editClientSupplier.name)
-		setMessage(editClientSupplier.actived)
+		setActived(editClientSupplier.actived)
 	}, [editClientSupplier])
-
-	const handleType = (e) => {
-		setType(e.target.value)
-	}
 
 	const togleActived = () => {
 		setActived(!actived)
@@ -46,60 +42,96 @@ function ClientSupplier() {
 		setName('')
 		setActived(true)
 		setTypeBtn('add')
+		setDisableSelect(false)
 	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		if (typeBtn === 'add') {
-			try {
-				const newClientSupplier = {
-					type,
-					name,
-					actived,
+		switch (type) {
+			case '1':
+				if (typeBtn === 'add') {
+					try {
+						const newClient = {
+							name,
+							actived,
+						}
+						await api.post('/client', newClient)
+						setTypeMessage('success')
+						setMessage('Cliente cadastrado com sucesso!')
+						timeMessage(setTypeMessage, setMessage)
+
+						handleClear()
+					} catch (error) {
+						console.error({ error })
+						setTypeMessage('error')
+						setMessage(error.response.data.error || error.response.data.erros)
+						timeMessage(setTypeMessage, setMessage)
+					}
+				} else {
+					try {
+						const edit = {
+							client_id: id,
+							name,
+							actived,
+						}
+						await api.patch('/client', edit)
+						setTypeMessage('success')
+						setMessage('Cliente editado com sucesso!')
+						timeMessage(setTypeMessage, setMessage)
+						handleClear()
+					} catch (error) {
+						console.error({ error })
+						setTypeMessage('error')
+						setMessage(error.response.data.error || error.response.data.erros)
+						timeMessage(setTypeMessage, setMessage)
+					}
 				}
-				await api.post('/client_supplier', newClientSupplier)
+				break
+			case '2':
+				if (typeBtn === 'add') {
+					try {
+						const newSupplier = {
+							name,
+							actived,
+						}
+						await api.post('/supplier', newSupplier)
+						setTypeMessage('success')
+						setMessage('Fornecedor cadastrado com sucesso!')
+						timeMessage(setTypeMessage, setMessage)
 
-				setTypeMessage('success')
-				{
-					type === 1
-						? setMessage('Cliente cadastrado com sucesso!')
-						: setMessage('Fornecedor cadastrado com sucesso!')
+						handleClear()
+					} catch (error) {
+						console.error({ error })
+						setTypeMessage('error')
+						setMessage(error.response.data.error || error.response.data.erros)
+						timeMessage(setTypeMessage, setMessage)
+					}
+				} else {
+					try {
+						const edit = {
+							supplier_id: id,
+							name,
+							actived,
+						}
+						await api.patch('/supplier', edit)
+						setTypeMessage('success')
+						setMessage('Fornecedor editado com sucesso!')
+						timeMessage(setTypeMessage, setMessage)
+						handleClear()
+					} catch (error) {
+						console.error({ error })
+						setTypeMessage('error')
+						setMessage(error.response.data.error || error.response.data.erros)
+						timeMessage(setTypeMessage, setMessage)
+					}
 				}
+				break
 
-				timeMessage(setTypeMessage, setMessage)
-
-				handleClear()
-			} catch (error) {
-				console.log({ error })
+			default:
 				setTypeMessage('error')
-				setMessage(error.response.data.error || error.response.data.erros)
+				setMessage('Tipo (Cliente/Fornecdor) não selecionado!')
 				timeMessage(setTypeMessage, setMessage)
-			}
-		} else {
-			try {
-				const edit = {
-					client_supplier_id: id,
-					type,
-					name,
-					actived,
-				}
-				await api.patch('/product', edit)
-
-				setTypeMessage('success')
-				{
-					type === 1
-						? setMessage('Cliente editado com sucesso!')
-						: setMessage('Fornecedor editado com sucesso!')
-				}
-
-				timeMessage(setTypeMessage, setMessage)
-				handleClear()
-			} catch (error) {
-				console.log({ error })
-				setTypeMessage('error')
-				setMessage(error.response.data.error || error.response.data.erros)
-				timeMessage(setTypeMessage, setMessage)
-			}
+				break
 		}
 	}
 
@@ -115,13 +147,14 @@ function ClientSupplier() {
 						<Select
 							name='type'
 							value={type}
-							defaultValue='Cliente ou Fornecedor?'
+							defaultValue='selecione uma opção...'
 							labelSelect='Cliente / Fornecedor'
-							handleOnChange={handleType}
+							handleOnChange={(e) => setType(e.target.value)}
 							height='2.3em'
-							divWidth='30%'>
+							divWidth='100%'
+							disable={disableSelect}>
 							<option value={1}>Cliente</option>
-							<option value={2}>Forneedor</option>
+							<option value={2}>Fornecedor</option>
 						</Select>
 						<Input
 							name='name'
@@ -130,7 +163,7 @@ function ClientSupplier() {
 							value={name}
 							nameLabel='Nome'
 							placeholder='Digite o cliente ou fornecedor'
-							divWidth='35%'
+							divWidth='100%'
 						/>
 						<CheckBox
 							name='actived'
@@ -138,9 +171,9 @@ function ClientSupplier() {
 							checked={actived && true}
 							nameLabel='Ativo'
 							togleOnChange={togleActived}
-							flexDirection='column'
-							margin='0 2% 1% 0%'
-							divWidth='5%'
+							flexDirection='row'
+							divWidth='10%'
+							margin='0 0.5em'
 						/>
 						{typeBtn === 'add' ? (
 							<div className={style.div_buttons}>
@@ -217,6 +250,8 @@ function ClientSupplier() {
 				screen={setScreen}
 				clientSupplierEdit={setEditClientSupplier}
 				btn={setTypeBtn}
+				typeEdit={setType}
+				disableSelect={setDisableSelect}
 			/>
 		)
 	}

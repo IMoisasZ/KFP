@@ -1,0 +1,27 @@
+.container_tool {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.container_tool h2 {
+    font-size: xx-large;
+}
+
+.container_tool form{
+    border: 1px solid black;
+    padding: 1em;
+    width: 50%;
+    border-radius: 1em;
+}
+
+.container_tool .div_buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+

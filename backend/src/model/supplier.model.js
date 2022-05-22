@@ -1,17 +1,13 @@
 import Sequelize from 'sequelize'
 import dbConnection from '../connection/db.connection.js'
 
-const ClientSupplier = dbConnection.define(
-	'client_supplier',
+const Supplier = dbConnection.define(
+	'supplier',
 	{
-		client_supplier_id: {
+		supplier_id: {
 			type: Sequelize.INTEGER,
 			primaryKey: true,
 			autoIncrement: true,
-		},
-		type: {
-			type: Sequelize.TINYINT,
-			allowNull: false,
 		},
 		name: {
 			type: Sequelize.STRING,
@@ -23,7 +19,7 @@ const ClientSupplier = dbConnection.define(
 			default: true,
 		},
 	},
-	{ tableName: 'client_supplier' },
+	{ tableName: 'supplier' },
 )
 
-export default ClientSupplier
+export default Supplier

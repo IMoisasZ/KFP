@@ -9,7 +9,7 @@ function MyCheckBox({
 	disable,
 	togleOnChange = null,
 	flexDirection,
-	margin = '0 0 1em 0',
+	margin,
 	checked = true,
 	padding,
 	divWidth,
@@ -17,7 +17,7 @@ function MyCheckBox({
 	return (
 		<div
 			className={style.container_checkBox}
-			style={{ flexDirection, margin, padding, width: divWidth }}>
+			style={{ flexDirection, padding, width: divWidth }}>
 			<label htmlFor={name} id={name} style={{ margin }}>
 				{nameLabel}
 			</label>

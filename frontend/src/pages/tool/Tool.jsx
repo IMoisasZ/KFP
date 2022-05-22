@@ -6,28 +6,26 @@ import Input from '../../components/input/MyInput'
 import CheckBox from '../../components/checkBox/MyCheckBox'
 import Button from '../../components/button/MyButton'
 import Message from '../../components/message/MyMessage'
-import UnityTable from './UnityTable'
-import style from './Unity.module.css'
+import ToolTable from './ToolTable'
+import style from './Tool.module.css'
 import api from '../../api/api'
 import timeMessage from '../../utils/timeMessage.util'
 
-function Unity() {
-	// data about unity
+function Tool() {
+	// data about tool
 	const [id, setId] = useState('')
-	const [tag, setTag] = useState('')
 	const [description, setDescription] = useState('')
 	const [actived, setActived] = useState(true)
 	const [screen, setScreen] = useState('create')
-	const [editUnity, setEditUnity] = useState('')
+	const [editTool, setEditTool] = useState('')
 	const [typeBtn, setTypeBtn] = useState('add')
 
-	// edit unity
+	// edit tool
 	useEffect(() => {
-		setId(editUnity.unity_id)
-		setTag(editUnity.unity_tag)
-		setDescription(editUnity.unity_description)
-		setActived(editUnity.unity_actived)
-	}, [editUnity])
+		setId(editTool.tool_id)
+		setDescription(editTool.description)
+		setActived(editTool.actived)
+	}, [editTool])
 
 	// message
 	const [message, setMessage] = useState('')
@@ -40,10 +38,9 @@ function Unity() {
 
 	// clear the form
 	const handleClear = () => {
-		setTag('')
 		setDescription('')
 		setActived(true)
-		setEditUnity('')
+		setEditTool('')
 		setTypeBtn('add')
 		setScreen('create')
 	}
@@ -53,15 +50,14 @@ function Unity() {
 		e.preventDefault()
 		if (typeBtn === 'add') {
 			try {
-				const newUnity = {
-					unity_tag: tag,
-					unity_description: description,
-					unity_actived: actived,
+				const newTool = {
+					description: description,
+					actived: actived,
 				}
 
-				await api.post('/unity', newUnity)
+				await api.post('/tool', newTool)
 				setTypeMessage('success')
-				setMessage('Unidade cadastrada com sucesso!')
+				setMessage('Ferramenta cadastrada com sucesso!')
 
 				timeMessage(setMessage, setTypeMessage)
 				handleClear()
@@ -77,14 +73,13 @@ function Unity() {
 		} else {
 			try {
 				const edit = {
-					unity_id: editUnity.unity_id,
-					unity_tag: tag,
-					unity_description: description,
-					unity_actived: actived,
+					tool_id: editTool.tool_id,
+					description,
+					actived,
 				}
-				await api.patch('/unity', edit)
+				await api.patch('/tool', edit)
 				setTypeMessage('success')
-				setMessage('Unidade editada com sucesso!')
+				setMessage('Ferramenta editada com sucesso!')
 
 				timeMessage(setMessage, setTypeMessage)
 				handleClear()
@@ -93,7 +88,6 @@ function Unity() {
 				setTypeMessage('error')
 				error.response.data.error && setMessage(error.response.data.error)
 				error.response.data.erros && setMessage(error.response.data.erros)
-
 				timeMessage(setMessage, setTypeMessage)
 				handleClear()
 			}
@@ -103,27 +97,18 @@ function Unity() {
 	if (screen === 'create') {
 		return (
 			<Container minHeight='75vh' backgroundColor='main' btnHome={true}>
-				<div className={style.container_unidade}>
+				<div className={style.container_tool}>
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />
 					</Link>
-					<h2>Unidade</h2>
+					<h2>Ferramenta</h2>
 					<Form handleOnSubmit={handleSubmit}>
-						<Input
-							name='tag'
-							nameLabel='Sigla'
-							type='text'
-							value={tag}
-							placeholder='Digite a tag da unidade'
-							handleOnChange={(e) => setTag(e.currentTarget.value)}
-							divWidth='100%'
-						/>
 						<Input
 							name='description'
 							nameLabel='Descrição'
 							type='text'
 							value={description}
-							placeholder='Digite descrição da unidade'
+							placeholder='Digite descrição da ferramenta'
 							handleOnChange={(e) => setDescription(e.currentTarget.value)}
 							divWidth='100%'
 						/>
@@ -145,7 +130,9 @@ function Unity() {
 									height='4em'
 									type='submit'
 									title={
-										typeBtn === 'add' ? 'Incluir unidade!' : 'Editar unidade!'
+										typeBtn === 'add'
+											? 'Incluir ferramenta!'
+											: 'Editar ferramenta!'
 									}
 								/>
 
@@ -154,7 +141,7 @@ function Unity() {
 									typeImage='list'
 									width='4em'
 									height='4em'
-									title='Lista de unidades'
+									title='Lista de ferramentas'
 									handleOnClick={() => setScreen('edit')}
 								/>
 							</div>
@@ -167,7 +154,9 @@ function Unity() {
 									height='4em'
 									type='submit'
 									title={
-										typeBtn === 'add' ? 'Incluir unidade!' : 'Editar unidade!'
+										typeBtn === 'add'
+											? 'Incluir ferramenta!'
+											: 'Editar ferramenta!'
 									}
 								/>
 
@@ -176,7 +165,7 @@ function Unity() {
 									typeImage='list'
 									width='4em'
 									height='4em'
-									title='Lista de unidades'
+									title='Lista de ferramentas'
 									handleOnClick={() => setScreen('edit')}
 								/>
 
@@ -204,13 +193,9 @@ function Unity() {
 		)
 	} else if (screen === 'edit') {
 		return (
-			<UnityTable
-				screen={setScreen}
-				unityEdit={setEditUnity}
-				btn={setTypeBtn}
-			/>
+			<ToolTable screen={setScreen} toolEdit={setEditTool} btn={setTypeBtn} />
 		)
 	}
 }
 
-export default Unity
+export default Tool
