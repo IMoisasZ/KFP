@@ -72,7 +72,14 @@ function Technician() {
 		setSystemUser(!systemUser)
 	}
 
-	const handleDisplay = () => {}
+	// show role
+	useEffect(() => {
+		if (systemUser) {
+			setDisplay('flex')
+		} else {
+			setDisplay('none')
+		}
+	}, [systemUser])
 
 	// clear the form
 	const handleClear = () => {
@@ -220,15 +227,18 @@ function Technician() {
 								nameLabel='Usuário do sistema?'
 								value={systemUser}
 								checked={!systemUser ? false : true}
+								width='80%'
 								togleOnChange={togleSystemUser}
 							/>
 							<Select
 								name='role'
 								defaultValue='Selecione um perfil'
 								labelSelect='Perfil de usuário'
-								flexDirection='row'
-								divWidth='30%'
-								display={display}>
+								flexDirection='column'
+								divWidth='15%'
+								display={display}
+								// marginLabel='0 0 2em 0'
+							>
 								{roles.map((role) => {
 									return <option key={role.role_id}>{role.description}</option>
 								})}
@@ -296,15 +306,15 @@ function Technician() {
 								/>
 							</div>
 						)}
+						{message && (
+							<Message
+								typeMesssage={typeMessage}
+								width='100%'
+								margin='1em 0 1em 0'>
+								{message}
+							</Message>
+						)}
 					</Form>
-					{message && (
-						<Message
-							typeMesssage={typeMessage}
-							width='49%'
-							margin='1em 0 1em 0'>
-							{message}
-						</Message>
-					)}
 				</div>
 			</Container>
 		)

@@ -13,7 +13,6 @@ import timeMessage from '../../utils/timeMessage.util'
 
 function Tool() {
 	// data about tool
-	const [id, setId] = useState('')
 	const [description, setDescription] = useState('')
 	const [actived, setActived] = useState(true)
 	const [screen, setScreen] = useState('create')
@@ -22,7 +21,6 @@ function Tool() {
 
 	// edit tool
 	useEffect(() => {
-		setId(editTool.tool_id)
 		setDescription(editTool.description)
 		setActived(editTool.actived)
 	}, [editTool])
@@ -179,15 +177,15 @@ function Tool() {
 								/>
 							</div>
 						)}
+						{message && (
+							<Message
+								typeMesssage={typeMessage}
+								width='100%'
+								margin='1em 0 0 0'>
+								{message}
+							</Message>
+						)}
 					</Form>
-					{message && (
-						<Message
-							typeMesssage={typeMessage}
-							width='49%'
-							margin='1em 0 1em 0'>
-							{message}
-						</Message>
-					)}
 				</div>
 			</Container>
 		)

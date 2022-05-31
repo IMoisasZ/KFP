@@ -14,7 +14,6 @@ import timeMessage from '../../utils/timeMessage.util'
 
 function Product() {
 	// useState
-	const [id, setId] = useState('')
 	const [internalCode, setInternalCode] = useState('')
 	const [description, setDescription] = useState('')
 	const [weight, setWeight] = useState(0)
@@ -30,7 +29,6 @@ function Product() {
 
 	// edit unity
 	useEffect(() => {
-		setId(editProduct.product_id)
 		setInternalCode(editProduct.internal_code)
 		setDescription(editProduct.description)
 		setWeight(editProduct.weight_per_meter)
@@ -97,7 +95,7 @@ function Product() {
 		} else {
 			try {
 				const edit = {
-					product_id: id,
+					product_id: editProduct.product_id,
 					internal_code: internalCode,
 					description: description,
 					weight_per_meter: weight,
@@ -249,14 +247,17 @@ function Product() {
 								/>
 							</div>
 						)}
+						{message ? (
+							<Message
+								width='100%'
+								margin='1em 0 0 0'
+								typeMesssage={typeMessage}>
+								{message}
+							</Message>
+						) : (
+							''
+						)}
 					</Form>
-					{message ? (
-						<Message width='53%' margin='0 0 1em 0' typeMesssage={typeMessage}>
-							{message}
-						</Message>
-					) : (
-						''
-					)}
 				</div>
 			</Container>
 		)

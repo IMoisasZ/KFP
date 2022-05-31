@@ -24,6 +24,7 @@ async function createTechnician(technician) {
 		technician.cpf = formatDocument(technician.cpf)
 		technician.rg = formatDocument(technician.rg)
 		technician.plate = technician.plate ? technician.plate.toUpperCase() : null
+		technician.car = technician.car ? technician.car.toUpperCase() : null
 		return await TechnicianRepository.createTechnician(technician)
 	} catch (error) {
 		throw error
@@ -53,6 +54,7 @@ async function updateTechnician(technician) {
 		technician.cpf = formatDocument(technician.cpf)
 		technician.rg = formatDocument(technician.rg)
 		technician.plate = technician.plate ? technician.plate.toUpperCase() : null
+		technician.car = technician.car ? technician.car.toUpperCase() : null
 		return await TechnicianRepository.updateTechnician(technician)
 	} catch (error) {
 		throw error

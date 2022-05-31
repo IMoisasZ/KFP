@@ -14,12 +14,15 @@ function MySelect({
 	disable,
 	flexDirection,
 	display,
+	marginLabel,
 }) {
 	return (
 		<div
 			className={style.container_select}
 			style={{ width: divWidth, margin, flexDirection, display }}>
-			<label htmlFor={name}>{labelSelect}</label>
+			<label htmlFor={name} style={{ margin: marginLabel }}>
+				{labelSelect}
+			</label>
 			<select
 				disabled={disable}
 				style={{ height }}

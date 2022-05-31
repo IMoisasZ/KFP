@@ -233,14 +233,17 @@ function ClientSupplier() {
 								/>
 							</div>
 						)}
+						{message ? (
+							<Message
+								width='100%'
+								margin='1em 0 0 0'
+								typeMesssage={typeMessage}>
+								{message}
+							</Message>
+						) : (
+							''
+						)}
 					</Form>
-					{message ? (
-						<Message width='53%' margin='0 0 1em 0' typeMesssage={typeMessage}>
-							{message}
-						</Message>
-					) : (
-						''
-					)}
 				</div>
 			</Container>
 		)

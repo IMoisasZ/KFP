@@ -13,7 +13,6 @@ import timeMessage from '../../utils/timeMessage.util'
 
 function Unity() {
 	// data about unity
-	const [id, setId] = useState('')
 	const [tag, setTag] = useState('')
 	const [description, setDescription] = useState('')
 	const [actived, setActived] = useState(true)
@@ -23,7 +22,6 @@ function Unity() {
 
 	// edit unity
 	useEffect(() => {
-		setId(editUnity.unity_id)
 		setTag(editUnity.unity_tag)
 		setDescription(editUnity.unity_description)
 		setActived(editUnity.unity_actived)
@@ -190,15 +188,15 @@ function Unity() {
 								/>
 							</div>
 						)}
+						{message && (
+							<Message
+								typeMesssage={typeMessage}
+								width='100%'
+								margin='1em 0 1em 0'>
+								{message}
+							</Message>
+						)}
 					</Form>
-					{message && (
-						<Message
-							typeMesssage={typeMessage}
-							width='49%'
-							margin='1em 0 1em 0'>
-							{message}
-						</Message>
-					)}
 				</div>
 			</Container>
 		)
