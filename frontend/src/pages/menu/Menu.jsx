@@ -66,7 +66,7 @@ function Menu() {
 					<Link to='/technician'>
 						<p>Técnicos</p>
 					</Link>
-					<Link to='/list_tools'>
+					<Link to='/tool_list'>
 						<p>Lista de Ferramentas</p>
 					</Link>
 				</div>

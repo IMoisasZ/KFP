@@ -10,6 +10,7 @@ import Product from './pages/product/Product'
 import ClientSupplier from './pages/clientSupplier/ClientSupplier'
 import Tool from './pages/tool/Tool'
 import Technician from './pages/technician/Technician'
+import ToolList from './pages/toolList/ToolList'
 
 function MyRoute({ children }) {
 	return (
@@ -26,6 +27,7 @@ function MyRoute({ children }) {
 					<Route path='/client_supplier' element={<ClientSupplier />} />
 					<Route path='/tool' element={<Tool />} />
 					<Route path='/technician' element={<Technician />} />
+					<Route path='/tool_list' element={<ToolList />} />
 				</Routes>
 				<Footer />
 			</Router>

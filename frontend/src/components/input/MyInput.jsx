@@ -8,7 +8,7 @@ function MyInput({
 	value,
 	placeholder = 'texto placeholder',
 	hide = false,
-	disable,
+	disable = false,
 	handleOnChange = null,
 	hadleOnAfterChange = null,
 	flexDirection = 'column',
@@ -29,7 +29,7 @@ function MyInput({
 				value={value}
 				placeholder={placeholder}
 				hidden={hide}
-				disable={disable}
+				disabled={disable}
 				onChange={handleOnChange}
 				onBlur={hadleOnAfterChange}
 			/>

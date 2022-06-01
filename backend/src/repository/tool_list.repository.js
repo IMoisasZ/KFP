@@ -31,7 +31,7 @@ async function getAllToolList(technician_id) {
 			where: {
 				technician_id,
 			},
-			iclude: [
+			include: [
 				{
 					model: ToolModel,
 				},
@@ -48,7 +48,7 @@ async function getAllToolList(technician_id) {
 async function getToolList(tool_list_id) {
 	try {
 		return await ToolListModel.findAll({
-			iclude: [
+			include: [
 				{
 					model: ToolModel,
 				},
