@@ -17,6 +17,7 @@ function ToolList() {
 	// today
 	const newToday = today()
 	// data about tool_list
+	const [toolListId, setToolListId] = useState('')
 	const [dateToolList, setDateToolList] = useState(newToday)
 	const [technicianId, setTechnicianId] = useState('')
 	const [listTechnician, setListTechnician] = useState([])
@@ -24,6 +25,8 @@ function ToolList() {
 	const [listTool, setListTool] = useState([])
 	const [quantity, setQuantity] = useState('')
 	const [listToolList, setListToolList] = useState([])
+	const [typeBtn, setTypeBtn] = useState('add')
+	const [technicianDisable, setTechnicianDisable] = useState(false)
 
 	// message
 	const [message, setMessage] = useState('')
@@ -56,15 +59,64 @@ function ToolList() {
 		setTechnicianId('')
 		setToolId('')
 		setQuantity('')
+		setTechnicianDisable(false)
+		setTypeBtn('add')
 	}
 
 	// submit
 	const handleSubmit = async (e) => {
 		e.preventDefault()
+		const body = {
+			date_tool_list: dateToolList,
+			technician_id: technicianId,
+			tool_id: toolId,
+			quantity,
+		}
+		if (typeBtn === 'add') {
+			try {
+				await api.post('/tool_list', body)
+				setTypeMessage('success')
+				setMessage('Ferramenta adicionada com sucesso!')
+
+				timeMessage(setMessage, setTypeMessage)
+				handleClear()
+			} catch (error) {
+				console.log(error.response.data.error || error.response.data.erros)
+				setTypeMessage('error')
+				setMessage(error.response.data.error || error.response.data.erros)
+
+				timeMessage(setMessage, setTypeMessage)
+				handleClear()
+			}
+		} else {
+			const body = {
+				tool_list_id: toolListId,
+				date_tool_list: dateToolList,
+				technician_id: technicianId,
+				tool_id: toolId,
+				quantity,
+			}
+			try {
+				await api.patch(`/tool_list`, body)
+				setTypeMessage('success')
+				setMessage('Ferramenta editada com sucesso!')
+
+				timeMessage(setMessage, setTypeMessage)
+				handleClear()
+			} catch (error) {
+				console.log(error.response.data.error || error.response.data.erros)
+				setTypeMessage('error')
+				setMessage(error.response.data.error || error.response.data.erros)
+
+				timeMessage(setMessage, setTypeMessage)
+				handleClear()
+			}
+		}
 	}
 
 	const headTable = ['Data', 'Ferramenta', 'Quantidade', 'Ações']
 
+	// list tool list
 	useEffect(() => {
 		const load = async () => {
 			const response = await api.get(
@@ -74,7 +126,37 @@ function ToolList() {
 		}
 		load()
 	}, [technicianId])
-	console.log(technicianId)
+
+	// edit tool about tool list
+	const handleEditToolList = async (toolList) => {
+		setToolListId(toolList.tool_list_id)
+		setDateToolList(formatDate(toolList.date_tool_list))
+		setTechnicianId(toolList.technician_id)
+		setToolId(toolList.tool_id)
+		setQuantity(toolList.quantity)
+		setTechnicianDisable(true)
+		setTypeBtn('edit')
+	}
+
+	// delete tool about tool list
+	const handleDeleteToolList = async (toolListId) => {
+		try {
+			const result = await api.delete(`/tool_list/${Number(toolListId)}`)
+			setTypeMessage('success')
+			setMessage(result.data.message)
+
+			timeMessage(setMessage, setTypeMessage)
+			handleClear()
+		} catch (error) {
+			console.log(error.response.data.error || error.response.data.erros)
+			setTypeMessage('error')
+			setMessage(error.response.data.error || error.response.data.erros)
+
+			timeMessage(setMessage, setTypeMessage)
+			handleClear()
+		}
+	}
+
 	return (
 		<>
 			<div
@@ -110,7 +192,8 @@ function ToolList() {
 							labelSelect='Técnico'
 							handleOnChange={(e) => setTechnicianId(e.target.value)}
 							height='2.3em'
-							divWidth='100%'>
+							divWidth='100%'
+							disable={technicianDisable}>
 							{listTechnician.map((tech) => {
 								return (
 									<option key={tech.technician_id} value={tech.technician_id}>
@@ -138,69 +221,49 @@ function ToolList() {
 						<Input
 							name='quantity'
 							nameLabel='Quantidade'
+							placeholder='Digite a quantidade'
 							type='text'
 							value={quantity}
 							handleOnChange={(e) => setQuantity(e.currentTarget.value)}
 							divWidth='100%'
 						/>
-						{/* {typeBtn === 'add' ? (
-						<div className={style.div_buttons}>
-							<Button
-								name='btn_incluir'
-								typeImage={typeBtn}
-								width='4em'
-								height='4em'
-								type='submit'
-								title={
-									typeBtn === 'add'
-										? 'Incluir ferramenta!'
-										: 'Editar ferramenta!'
-								}
-							/>
-
-							<Button
-								name='btn_list_unity'
-								typeImage='list'
-								width='4em'
-								height='4em'
-								title='Lista de ferramentas'
-								handleOnClick={() => setScreen('edit')}
-							/>
-						</div>
-					) : (
-						<div className={style.div_buttons}>
-							<Button
-								name='btn_incluir'
-								typeImage={typeBtn}
-								width='4em'
-								height='4em'
-								type='submit'
-								title={
-									typeBtn === 'add'
-										? 'Incluir ferramenta!'
-										: 'Editar ferramenta!'
-								}
-							/>
-
-							<Button
-								name='btn_list_unity'
-								typeImage='list'
-								width='4em'
-								height='4em'
-								title='Lista de ferramentas'
-								handleOnClick={() => setScreen('edit')}
-							/>
-
-							<Button
-								name='btn_new'
-								typeImage='new'
-								width='4em'
-								height='4em'
-								title='Limpar Campos!'
-								handleOnClick={() => handleClear()}
-							/>
-						</div>
-					)} */}
+						{typeBtn === 'add' ? (
+							<div className={style.div_buttons}>
+								<Button
+									name='btn_incluir'
+									typeImage={typeBtn}
+									width='4em'
+									height='4em'
+									type='submit'
+								/>
+								<Button
+									name='btn_incluir'
+									typeImage='new'
+									width='4em'
+									height='4em'
+									type='button'
+									handleOnClick={handleClear}
+								/>
+							</div>
+						) : (
+							<div className={style.div_buttons}>
+								<Button
+									name='btn_incluir'
+									typeImage='edit'
+									width='4em'
+									height='4em'
+									type='submit'
+								/>
+								<Button
+									name='btn_incluir'
+									typeImage='new'
+									width='4em'
+									height='4em'
+									type='button'
+									handleOnClick={handleClear}
+								/>
+							</div>
+						)}
 						{message && (
 							<Message
 								typeMesssage={typeMessage}
@@ -219,6 +282,26 @@ function ToolList() {
 											<td>{formatDate(tList.date_tool_list)}</td>
 											<td>{tList.tool.description}</td>
 											<td>{tList.quantity}</td>
+											<td>
+												<Button
+													typeImage='edit'
+													color='orange'
+													backgroundColor='transparent'
+													title={`Editar a ferramenta ${tList.tool.description}`}
+													handleOnClick={() => handleEditToolList(tList)}
+												/>
+											</td>
+											<td>
+												<Button
+													typeImage='del'
+													color='darkRed'
+													backgroundColor='transparent'
+													title={`Excluir a ferramenta ${tList.tool.description}`}
+													handleOnClick={() =>
+														handleDeleteToolList(tList.tool_list_id)
+													}
+												/>
+											</td>
 										</tr>
 									)
 								})}

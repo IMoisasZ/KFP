@@ -66,7 +66,8 @@ async function getToolList(req, res, next) {
 
 async function deleteToolList(req, res, next) {
 	try {
-		res.send(await ToolListService.deleteToolList(req.params.tool_list_id))
+		await ToolListService.deleteToolList(req.params.tool_list_id)
+		res.status(200).json({ message: 'Ferramenta removida com sucesso' })
 		logger.info(`DELETE /tool_list/:${req.params.tool_list_id}`)
 	} catch (error) {
 		next(error)

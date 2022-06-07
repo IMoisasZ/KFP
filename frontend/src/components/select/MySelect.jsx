@@ -30,7 +30,9 @@ function MySelect({
 				id={name}
 				value={value}
 				onChange={handleOnChange}>
-				<option value=''>{defaultValue}</option>
+				<option value='' disabled={disable}>
+					{defaultValue}
+				</option>
 				{children}
 			</select>
 		</div>
