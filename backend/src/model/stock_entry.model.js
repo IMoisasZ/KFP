@@ -1,5 +1,8 @@
 import Sequelize from 'sequelize'
 import DbConnection from '../connection/db.connection.js'
+import ClientModel from './client.model.js'
+import SupplierModel from './supplier.model.js'
+import ProductModel from './product.model.js'
 
 const StockEntry = DbConnection.define(
 	'stock_entry',
@@ -44,5 +47,9 @@ const StockEntry = DbConnection.define(
 	},
 	{ tableName: 'stock_entry' },
 )
+
+StockEntry.belongsTo(ClientModel, { foreignKey: 'client_id' })
+StockEntry.belongsTo(SupplierModel, { foreignKey: 'supplier_id' })
+StockEntry.belongsTo(ProductModel, { foreignKey: 'product_id' })
 
 export default StockEntry

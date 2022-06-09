@@ -49,9 +49,7 @@ async function getAllStockEntries(req, res, next) {
 
 async function getStockEntry(req, res, next) {
 	try {
-		res.send(
-			await StockEntryService.getAllStockEntries(req.params.stock_entry_id),
-		)
+		res.send(await StockEntryService.getStockEntry(req.params.stock_entry_id))
 		logger.info(`GET - /stock_entry/:${req.params.stock_entry_id}`)
 	} catch (error) {
 		next(error)

@@ -1,4 +1,7 @@
 import StockEntryModel from '../model/stock_entry.model.js'
+import ClientModel from '../model/client.model.js'
+import SupplierModel from '../model/supplier.model.js'
+import ProductModel from '../model/product.model.js'
 
 async function createStockEntry(stockEntry) {
 	const newStockEntry = await StockEntryModel.create(stockEntry)
@@ -15,11 +18,35 @@ async function updateStockEntry(stockEntry) {
 }
 
 async function getAllStockEntries() {
-	return await StockEntryModel.findAll()
+	return await StockEntryModel.findAll({
+		include: [
+			{
+				model: ClientModel,
+			},
+			{
+				model: SupplierModel,
+			},
+			{
+				model: ProductModel,
+			},
+		],
+	})
 }
 
 async function getStockEntry(stockEntryId) {
-	return await StockEntryModel.findByPk(stockEntryId)
+	return await StockEntryModel.findByPk(stockEntryId, {
+		include: [
+			{
+				model: ClientModel,
+			},
+			{
+				model: SupplierModel,
+			},
+			{
+				model: ProductModel,
+			},
+		],
+	})
 }
 
 async function deleteStockEntry(stockEntryId) {
