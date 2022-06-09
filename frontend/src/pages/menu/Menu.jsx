@@ -17,6 +17,10 @@ function Menu() {
 				setDescriptonMenu('Menu - Controle de Estoque/Cadastro')
 				setDisplay(itemMenu)
 				break
+			case 12:
+				setDescriptonMenu('Menu - Controle de Estoque/Lançamentos')
+				setDisplay(itemMenu)
+				break
 			case 2:
 				setDescriptonMenu('Menu - Financeiro')
 				setDisplay(itemMenu)
@@ -38,12 +42,12 @@ function Menu() {
 					<p onClick={() => handleDescriptionMenu(2)}>Financeiro</p>
 					<p onClick={() => handleDescriptionMenu(3)}>Sistema</p>
 				</div>
-				{/* controle dde estoque */}
+				{/* controle de estoque */}
 				<div
 					className={style.controle_estoque_itens}
 					style={display === 1 ? { display: 'block' } : { display: 'none' }}>
 					<p onClick={() => handleDescriptionMenu(11)}>Cadastros</p>
-					<p>Lançamentos</p>
+					<p onClick={() => handleDescriptionMenu(12)}>Lançamentos</p>
 					<p>Consultas</p>
 					<p>Relatórios</p>
 				</div>
@@ -68,6 +72,20 @@ function Menu() {
 					</Link>
 					<Link to='/tool_list'>
 						<p>Lista de Ferramentas</p>
+					</Link>
+				</div>
+				{/* lançamentos */}
+				<div
+					className={style.controle_estoque_cadastro}
+					style={display === 12 ? { display: 'block' } : { display: 'none' }}>
+					<Link to='/stock_entry'>
+						<p>Entrada de Estoque</p>
+					</Link>
+					<Link to='/stock_out'>
+						<p>Saia de Estoque</p>
+					</Link>
+					<Link to='/stock_adjust'>
+						<p>Ajuste de Estoque</p>
 					</Link>
 				</div>
 			</main>

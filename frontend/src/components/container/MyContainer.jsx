@@ -1,6 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import Button from '../button/MyButton'
 import style from '../container/MyContainer.module.css'
 
 function MyContainer({

@@ -8,7 +8,7 @@ function MySelect({
 	children,
 	defaultValue = 'Escolha um item da lista',
 	labelSelect = 'Nome do select',
-	height = '2.5em',
+	height = '2.3em',
 	divWidth,
 	margin,
 	disable,
