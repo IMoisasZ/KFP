@@ -27,7 +27,7 @@ function ClientSupplierTable({
 		setListClientSupplier(result.data)
 	}
 
-	// show all clients
+	// show all suppliers
 	const allSuppliers = async () => {
 		const result = await api.get(`/supplier?supplier_status`)
 		setListClientSupplier(result.data)
