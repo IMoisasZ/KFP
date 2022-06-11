@@ -40,6 +40,19 @@
     margin-right: 0.5em;
 }
 
-.container_stock_entry p {
-    text-align: start;
+.container_stock_entry .div_disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #191970;
+    font-weight: bold;
+    width: 30%;
 }
+
+.container_stock_entry .div_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+

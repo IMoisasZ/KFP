@@ -27,6 +27,7 @@ function MyInput({
 				style={{ height }}
 				type={type}
 				value={value}
+				min={1}
 				placeholder={placeholder}
 				hidden={hide}
 				disabled={disable}
