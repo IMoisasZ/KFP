@@ -1,6 +1,6 @@
 import React from 'react'
 
-function MyTable({ children, caption, headTable }) {
+function MyTable({ children, caption, headTable, colSpan = 3 }) {
 	return (
 		<table>
 			<caption>{caption}</caption>
@@ -8,7 +8,7 @@ function MyTable({ children, caption, headTable }) {
 				<tr>
 					{headTable.map((head, index) => {
 						return head === 'Ações' ? (
-							<th key={index} colSpan={3}>
+							<th key={index} colSpan={colSpan}>
 								{head}
 							</th>
 						) : (
