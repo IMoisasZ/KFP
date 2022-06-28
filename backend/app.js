@@ -9,6 +9,7 @@ import ToolRoute from './src/route/tool.route.js'
 import TechnicianRoute from './src/route/technician.route.js'
 import ToolListRoute from './src/route/tool_list.route.js'
 import StockEntryRoute from './src/route/stock_entry.route.js'
+import StockOutRoute from './src/route/stock_out.route.js'
 
 const app = express()
 
@@ -24,25 +25,26 @@ app.use('/tool', ToolRoute)
 app.use('/technician', TechnicianRoute)
 app.use('/tool_list', ToolListRoute)
 app.use('/stock_entry', StockEntryRoute)
+app.use('/stock_out', StockOutRoute)
 
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format
 const myformat = printf(({ level, message, label, timestamp }) => {
-	return `${timestamp} [${label}] ${level} ${message}`
+  return `${timestamp} [${label}] ${level} ${message}`
 })
 global.logger = winston.createLogger({
-	level: 'silly',
-	transports: [
-		new winston.transports.Console(),
-		new winston.transports.File({ filename: 'kfp_system' }),
-	],
-	format: combine(label({ label: 'kfp_system' }), timestamp(), myformat),
+  level: 'silly',
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: 'kfp_system' }),
+  ],
+  format: combine(label({ label: 'kfp_system' }), timestamp(), myformat),
 })
 
 // erro padrão
 app.use((err, req, res, next) => {
-	global.logger.error(`${req.method} ${req.baseUrl} - ${err.message}`)
-	res.status(400).send({ erros: err.message })
+  global.logger.error(`${req.method} ${req.baseUrl} - ${err.message}`)
+  res.status(400).send({ erros: err.message })
 })
 
 export default app
