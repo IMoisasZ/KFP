@@ -1,7 +1,7 @@
 import { format, addDays } from 'date-fns'
 
 function formatDate(date) {
-	return format(new Date(date), 'dd-MM-yyyy')
+	return format(addDays(new Date(date), 1), 'dd-MM-yyyy')
 }
 
 export default formatDate

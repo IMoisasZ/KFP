@@ -1,7 +1,9 @@
 import StockEntryRepository from '../repository/stock_entry.repository.js'
+import dateFormat from '../util/dateFormat.util.js'
 
 async function createStockEntry(stockEntry) {
 	try {
+		stockEntry.date = dateFormat(stockEntry.date)
 		return await StockEntryRepository.createStockEntry(stockEntry)
 	} catch (error) {
 		throw error

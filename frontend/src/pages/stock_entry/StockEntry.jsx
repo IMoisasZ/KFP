@@ -10,14 +10,13 @@ import Message from '../../components/message/MyMessage'
 import Table from '../../components/table/MyTable'
 import style from './StockEntry.module.css'
 import today from '../../utils/today.util'
-import formatDate from '../../utils/formatDate.util'
 import api from '../../api/api'
 import timeMessage from '../../utils/timeMessage.util'
+import formatDate from '../../utils/formatDate.util'
 
 function StockEntry() {
 	// default date
 	const defaultDate = today()
-
 	// useState
 	const [stockEntryId, setStockEnryId] = useState('')
 	const [oppeningBalance, setOppeningBalance] = useState(false)
@@ -118,6 +117,7 @@ function StockEntry() {
 					quantity,
 					price,
 				}
+				console.log(entry)
 				await api.post('/stock_entry', entry)
 
 				setTypeMessage('success')
@@ -236,10 +236,11 @@ function StockEntry() {
 		'Total',
 		'Ações',
 	]
+	console.log(date)
 
 	if (screen === 'create') {
 		return (
-			<Container minHeight='80vh' maxHeight='77vh' backgroundColor='main'>
+			<Container minHeight='73vh' maxHeight='73vh' backgroundColor='main'>
 				<div className={style.container_stock_entry}>
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />
@@ -409,75 +410,73 @@ function StockEntry() {
 		)
 	} else {
 		return (
-			<Container
-				Container
-				minHeight='80vh'
-				maxHeight='77vh'
-				backgroundColor='main'>
-				<h1>Estradas de Estoque</h1>
-				<Button
-					margin='1em 0 0 0'
-					typeImage='back'
-					title='Voltar ao cadastro de produto'
-					handleOnClick={() => setScreen('create')}
-				/>
-				<Table headTable={headerTable} colSpan={2}>
-					{listStockEntry.map((stockEntry) => (
-						<tr key={stockEntry.id}>
-							<td>{stockEntry.opening_balance ? 'Sim' : 'Nao'}</td>
-							<td>{formatDate(stockEntry.date)}</td>
-							<td title='C = Cliente | F = Fornecedor'>
-								{stockEntry.client
-									? `C - ${stockEntry.client.name}`
-									: `F - ${stockEntry.supplier.name}`}{' '}
-							</td>
-							<td>{stockEntry.nf}</td>
-							<td>{stockEntry.product.description}</td>
-							<td>{stockEntry.quantity}</td>
-							<td>
-								{parseFloat(stockEntry.price).toLocaleString('pt-br', {
-									style: 'currency',
-									currency: 'BRL',
-								})}
-							</td>
-							<td>
-								{(stockEntry.quantity * stockEntry.price).toLocaleString(
-									'pt-br',
-									{ style: 'currency', currency: 'BRL' },
-								)}
-							</td>
-							<td>
-								<Button
-									typeImage='edit'
-									color='orange'
-									backgroundColor='transparent'
-									title={`Editar a entrada ${
-										stockEntry.stock_entry_id
-									} do dia ${formatDate(stockEntry.date)}`}
-									handleOnClick={() =>
-										handleEditStockEntry(stockEntry.stock_entry_id)
-									}
-								/>
-							</td>
-							<td>
-								<Button
-									typeImage='del'
-									color='darkRed'
-									backgroundColor='transparent'
-									title={`Excluir a entrada ${
-										stockEntry.stock_entry_id
-									} do dia ${formatDate(stockEntry.date)} `}
-									handleOnClick={() =>
-										handleDeleteStockEntry(
-											stockEntry.stock_entry_id,
-											stockEntry.nf,
-										)
-									}
-								/>
-							</td>
-						</tr>
-					))}
-				</Table>
+			<Container Container height='70vh' backgroundColor='main'>
+				<div className={style.container_table_entry}>
+					<div>
+						<h1>Entradas de Estoque</h1>
+						<Button
+							margin='1em 0 0 0'
+							typeImage='back'
+							title='Voltar ao cadastro de produto'
+							handleOnClick={() => setScreen('create')}
+						/>
+					</div>
+					<div className={style.div_table_entry}>
+						<Table headTable={headerTable} colSpan={2}>
+							{listStockEntry.map((stockEntry) => (
+								<tr key={stockEntry.id}>
+									<td>{stockEntry.opening_balance ? 'Sim' : 'Nao'}</td>
+									<td>{formatDate(stockEntry.date)}</td>
+									<td title='C = Cliente | F = Fornecedor'>
+										{stockEntry.client
+											? `C - ${stockEntry.client.name}`
+											: `F - ${stockEntry.supplier.name}`}{' '}
+									</td>
+									<td>{stockEntry.nf}</td>
+									<td>{stockEntry.product.description}</td>
+									<td>{stockEntry.quantity}</td>
+									<td>
+										{parseFloat(stockEntry.price).toLocaleString('pt-br', {
+											style: 'currency',
+											currency: 'BRL',
+										})}
+									</td>
+									<td>
+										{(stockEntry.quantity * stockEntry.price).toLocaleString(
+											'pt-br',
+											{ style: 'currency', currency: 'BRL' },
+										)}
+									</td>
+									<td>
+										<Button
+											typeImage='edit'
+											color='orange'
+											backgroundColor='transparent'
+											title={`Editar a entrada ${stockEntry.stock_entry_id} do dia ${stockEntry.date}`}
+											handleOnClick={() =>
+												handleEditStockEntry(stockEntry.stock_entry_id)
+											}
+										/>
+									</td>
+									<td>
+										<Button
+											typeImage='del'
+											color='darkRed'
+											backgroundColor='transparent'
+											title={`Excluir a entrada ${stockEntry.stock_entry_id} do dia ${stockEntry.date} `}
+											handleOnClick={() =>
+												handleDeleteStockEntry(
+													stockEntry.stock_entry_id,
+													stockEntry.nf,
+												)
+											}
+										/>
+									</td>
+								</tr>
+							))}
+						</Table>
+					</div>
+				</div>
 			</Container>
 		)
 	}

@@ -3,8 +3,15 @@ import StockEntryService from '../service/stock_entry.service.js'
 async function createStockEntry(req, res, next) {
 	try {
 		const stockEntry = req.body
+		console.log(stockEntry)
+
 		if (!stockEntry.date) {
 			return res.status(400).json({ error: 'A data é obrigatória' })
+		}
+		if (!stockEntry.client_id && !stockEntry.supplier_id) {
+			return res
+				.status(400)
+				.json({ error: 'Escolha um cliente ou um fornecedor!' })
 		}
 		if (!stockEntry.product_id) {
 			return res.status(400).json({ error: 'O produto é obrigatório' })
@@ -24,6 +31,11 @@ async function updateStockEntry(req, res, next) {
 		const stockEntry = req.body
 		if (!stockEntry.date) {
 			return res.status(400).json({ error: 'A data é obrigatória' })
+		}
+		if (!stockEntry.client_id || !stockEntry.supplier_id) {
+			return res
+				.status(400)
+				.json({ error: 'Escolha o clinte ou o fornecedor!' })
 		}
 		if (!stockEntry.product_id) {
 			return res.status(400).json({ error: 'O produto é obrigatório' })
