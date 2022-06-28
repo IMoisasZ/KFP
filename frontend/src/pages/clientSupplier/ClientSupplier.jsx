@@ -137,7 +137,7 @@ function ClientSupplier() {
 
 	if (screen === 'create') {
 		return (
-			<Container minHeight='75vh' backgroundColor='main'>
+			<Container minHeight='70vh' backgroundColor='main'>
 				<div className={style.container_client_supplier}>
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />

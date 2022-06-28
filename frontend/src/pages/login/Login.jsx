@@ -11,7 +11,7 @@ function Login() {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	return (
-		<Container height='75vh' backgroundColor='main'>
+		<Container height='70vh' backgroundColor='main'>
 			<section className={style.container_login}>
 				<Form>
 					<h1>Login</h1>

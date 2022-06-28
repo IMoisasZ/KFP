@@ -62,7 +62,7 @@ function UnityTable({ screen, unityEdit, btn }) {
 	}
 
 	return (
-		<Container height='75vh' backgroundColor='main'>
+		<Container height='70vh' backgroundColor='main'>
 			<div className={style.container_table}>
 				<Button
 					margin='1em 0 0 0'

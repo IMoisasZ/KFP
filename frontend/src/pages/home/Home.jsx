@@ -6,7 +6,7 @@ import style from './Home.module.css'
 
 function Home() {
 	return (
-		<Container height='75vh' backgroundColor='main'>
+		<Container height='70vh' backgroundColor='main'>
 			<div className={style.container_home}>
 				<h1> KFP SYSTEM</h1>
 				<p>Clique no botão abaixo para fazer login e entrar no sistema!</p>

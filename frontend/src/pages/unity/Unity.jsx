@@ -100,7 +100,7 @@ function Unity() {
 
 	if (screen === 'create') {
 		return (
-			<Container minHeight='75vh' backgroundColor='main' btnHome={true}>
+			<Container minHeight='70vh' backgroundColor='main' btnHome={true}>
 				<div className={style.container_unidade}>
 					<Link to='/menu'>
 						<Button typeImage='home' title='Voltar ao menu' />

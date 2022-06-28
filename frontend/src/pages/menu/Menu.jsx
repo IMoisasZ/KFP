@@ -34,7 +34,7 @@ function Menu() {
 	}
 
 	return (
-		<Container backgroundColor='main' height='75vh'>
+		<Container backgroundColor='main' height='70vh'>
 			<main className={style.container_menu}>
 				<h1>{descriptionMenu}</h1>
 				<div className={style.itens_menu}>
@@ -82,7 +82,7 @@ function Menu() {
 						<p>Entrada de Estoque</p>
 					</Link>
 					<Link to='/stock_out'>
-						<p>Saia de Estoque</p>
+						<p>Saída de Estoque</p>
 					</Link>
 					<Link to='/stock_adjust'>
 						<p>Ajuste de Estoque</p>
