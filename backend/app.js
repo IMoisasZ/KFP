@@ -10,6 +10,7 @@ import TechnicianRoute from './src/route/technician.route.js'
 import ToolListRoute from './src/route/tool_list.route.js'
 import StockEntryRoute from './src/route/stock_entry.route.js'
 import StockOutRoute from './src/route/stock_out.route.js'
+import StockActualRoute from './src/route/stock_actual.route.js'
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use('/technician', TechnicianRoute)
 app.use('/tool_list', ToolListRoute)
 app.use('/stock_entry', StockEntryRoute)
 app.use('/stock_out', StockOutRoute)
+app.use('/stock_actual', StockActualRoute)
 
 // winston(log)
 const { combine, timestamp, label, printf } = winston.format

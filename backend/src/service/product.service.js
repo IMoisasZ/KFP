@@ -1,9 +1,17 @@
 import ProductRepository from '../repository/product.repository.js'
+import StockActualRepository from '../repository/stock_actual.repository.js'
 
 async function createProduct(product) {
 	try {
 		product.description = product.description.toUpperCase()
-		return await ProductRepository.createProduct(product)
+		const newProduct = await ProductRepository.createProduct(product)
+		const stock = {
+			product_id: newProduct.product_id,
+			actual_stock: 0.00,
+			average_cost: 0.00,
+		}
+		StockActualRepository.createStockActual(stock)
+		return newProduct
 	} catch (error) {
 		throw error
 	}
