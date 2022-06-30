@@ -1,6 +1,7 @@
 import StockOutModel from '../model/stock_out.model.js'
 import ProductModel from '../model/product.model.js'
 import TechnicianModel from '../model/technician.model.js'
+import sequelize from 'sequelize'
 
 async function createStockOut(stockOut) {
   try {
@@ -70,10 +71,29 @@ async function deleteStockOut(stock_out_id) {
   }
 }
 
+async function getSumStockOutByProduct(product_id){
+	try {
+		return await StockOutModel.findAll({
+			where: {
+				product_id,
+			},
+				attributes:[
+					[sequelize.fn('sum', sequelize.col('quantity')), 'stock_actual_out'],
+				],
+
+				raw:true
+
+		})
+	} catch (error) {
+		throw error
+	}
+}
+
 export default {
   createStockOut,
   updateStockOut,
   getAllStockOut,
   getStockOut,
   deleteStockOut,
+  getSumStockOutByProduct
 }

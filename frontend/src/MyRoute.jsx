@@ -16,6 +16,7 @@ import Technician from './pages/technician/Technician'
 import ToolList from './pages/toolList/ToolList'
 // lancamentos
 import StockEntry from './pages/stock_entry/StockEntry'
+import StockOut from './pages/stock_out/StockOut'
 
 function MyRoute({ children }) {
 	return (
@@ -37,6 +38,7 @@ function MyRoute({ children }) {
 					<Route path='/tool_list' element={<ToolList />} />
 					{/* lançamentos */}
 					<Route path='/stock_entry' element={<StockEntry />} />
+					<Route path='/stock_out' element={<StockOut />} />
 				</Routes>
 				<Footer />
 			</Router>

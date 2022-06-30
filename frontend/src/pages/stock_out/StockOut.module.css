@@ -1,0 +1,100 @@
+.container_stock_out {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container_stock_out h2 {
+    margin: 1em auto;
+}
+
+.container_stock_out form {
+    width: 60%;   
+    margin: 0 auto;
+    border: 1px solid black;
+    border-radius: 1em;
+    padding: 1em;
+}
+
+.container_stock_out .lines {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container_stock_out .line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.container_stock_out .line_checkbox {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 1em;
+}
+
+.container_stock_out .line_checkbox label {
+    margin-right: 0.5em;
+}
+
+.container_stock_out .div_disabled {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #191970;
+    font-weight: bold;
+    width: 30%;
+}
+
+.container_stock_out .div_buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.container_table_out {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.div_table_out {
+    overflow-x: auto;
+    height: 75% ;
+}
+
+.div_table_out table {
+    margin-top: 2em;
+    height: 100%;
+}
+
+.div_table_out table tbody tr td {
+    padding: 0 2em;
+    margin-top: 0;
+    cursor: pointer;
+}
+
+.div_table_out table tbody tr {
+    transition: 2s;
+}
+
+.div_table_out table tbody td button {
+    margin: 0;
+}
+
+.div_table_out table tbody tr:hover {
+    font-weight: 700;
+    background-color: rgb(99, 99, 217);
+}

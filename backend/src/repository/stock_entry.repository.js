@@ -86,7 +86,7 @@ async function getSumStockEntryByProduct(product_id){
 				product_id,
 			},
 				attributes:[
-					[sequelize.fn('sum', sequelize.col('quantity')), 'stock_actual'],
+					[sequelize.fn('sum', sequelize.col('quantity')), 'stock_actual_entry'],
 				],
 
 				raw:true
